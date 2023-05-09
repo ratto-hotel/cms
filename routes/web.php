@@ -116,6 +116,7 @@ if (Features::enabled(Features::twoFactorAuthentication())) {
     $twoFactorLimiter = config('fortify.limiters.two-factor');
 
     Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])
+        ->name('two-factor-challenge')
         ->middleware(
             array_filter([
                 'guest:' . config('fortify.guard'),

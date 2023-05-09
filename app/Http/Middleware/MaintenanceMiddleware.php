@@ -12,7 +12,8 @@ class MaintenanceMiddleware
     {
 
         $allowed_pages = $request->is('maintenance') || $request->is('settings.two-factor')
-        || $request->is('two-factor.verify');
+        || $request->is('two-factor.verify')
+        || $request->is('two-factor-challenge');
 
         // If not authenticated, always redirect to maintenance if enabled
         if ((!$allowed_pages && $request->method() !== 'POST') && (!Auth::check() && setting('maintenance_enabled') === '1')) {
