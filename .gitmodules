@@ -1,0 +1,11 @@
+[submodule "nitro-assets"]
+path = public/nitro-assets
+url = https://github.com/ratto-hotel/nitro-assets
+
+[submodule "nitro-react"]
+path = public/nitro-react
+url = https://github.com/ratto-hotel/nitro-react
+
+[submodule "swf"]
+path = public/swf
+url = https://github.com/ratto-hotel/swf
