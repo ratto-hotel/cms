@@ -10,8 +10,12 @@ class MaintenanceMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
+
+        $allowed_pages = $request->is('maintenance') || $request->is('settings.two-factor')
+        || $request->is('two-factor.verify');
+
         // If not authenticated, always redirect to maintenance if enabled
-        if ((!$request->is('maintenance') && $request->method() !== 'POST') && (!Auth::check() && setting('maintenance_enabled') === '1')) {
+        if ((!$allowed_pages && $request->method() !== 'POST') && (!Auth::check() && setting('maintenance_enabled') === '1')) {
             return to_route('maintenance.show');
         }
 
@@ -23,7 +27,7 @@ class MaintenanceMiddleware
         }
 
         // If authenticated user is above or equal the minimum maintenance rank
-        if ((setting('maintenance_enabled') === '1' && !$request->is('maintenance')) && (Auth::check() && Auth::user()->rank >= setting('min_maintenance_login_rank'))) {
+        if ((setting('maintenance_enabled') === '1' && !$allowed_pages) && (Auth::check() && Auth::user()->rank >= setting('min_maintenance_login_rank'))) {
             return $next($request);
         }
 
