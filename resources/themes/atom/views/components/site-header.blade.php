@@ -1,4 +1,4 @@
-<div class="w-full h-52 relative flex items-center justify-center header-bg" style="background: url({{ setting('cms_header') }}) no-repeat center center;">
+<div class="w-full h-52 relative flex items-center justify-center header-bg" style="background: url({{ setting('cms_header') }}) no-repeat center center; background-size: cover">
     <div class="w-full h-full bg-black absolute bg-opacity-50"></div>
 
     @auth
