@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build  --config resources/themes/atom/vite.config.js",
         "dev:atom": "vite --config resources/themes/atom/vite.config.js",
         "build:atom": "vite build --config resources/themes/atom/vite.config.js",
         "dev:atom-bs": "vite --config resources/themes/atom-bs/vite.config.js",
