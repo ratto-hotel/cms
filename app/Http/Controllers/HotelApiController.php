@@ -6,6 +6,7 @@ use App\Http\Resources\OnlineUserCountResource;
 use App\Http\Resources\OnlineUsersResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Models\ExternalText;
 
 class HotelApiController extends Controller
 {
@@ -24,5 +25,14 @@ class HotelApiController extends Controller
     public function onlineUserCount($columns = ['username', 'motto', 'look'])
     {
         return new OnlineUserCountResource(User::select($columns)->where('online', '=', '1'));
+    }
+
+
+    public function externalTexts()
+    {
+        return ExternalText::select()
+            ->orderBy('key', 'ASC')
+            ->pluck('value', 'key')
+            ->all();
     }
 }

@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user/{username}', [HotelApiController::class, 'fetchUser'])->name('api.fetch-user')->middleware('throttle:50,1');;
 Route::get('/online-users', [HotelApiController::class, 'onlineUsers'])->name('api.online-users')->middleware('throttle:50,1');;
 Route::get('/online-count', [HotelApiController::class, 'onlineUserCount'])->name('api.online-count')->middleware('throttle:50,1');
+Route::get('/external-texts', [HotelApiController::class, 'externalTexts'])->name('api.external-texts')->middleware('throttle:50,1');
