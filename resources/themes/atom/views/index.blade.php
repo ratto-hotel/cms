@@ -15,7 +15,7 @@
                     {{ __('Keep up to date with the latest hotel gossip.') }}
                 </x-slot:under-title>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1">
                     @forelse($articles as $article)
                         <x-article-card :article="$article"/>
                     @empty

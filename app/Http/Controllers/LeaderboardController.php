@@ -48,8 +48,10 @@ class LeaderboardController extends Controller
             ->with('user:id,username,look')
             ->get();
 
+        $credits = User::whereNotIn('id', $staffUsers)->orderByDesc('credits')->take(9)->get();
+
         return view('leaderboard', [
-            'credits' => User::whereNotIn('id', $staffUsers)->orderByDesc('credits')->take(9)->get(),
+            'credits' => $credits,
             'duckets' => $duckets,
             'diamonds' => $diamonds,
             'mostOnline' => $mostOnline,
