@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserCurrency;
 use App\Models\UserSetting;
+use Carbon\Carbon;
 
 class LeaderboardController extends Controller
 {
@@ -12,8 +13,13 @@ class LeaderboardController extends Controller
     {
         $staffUsers = User::select('id')->where('rank', '>=', setting('min_staff_rank'))->get()->pluck('id');
 
+        $date = Carbon::now();
+        $date->subtract('month', 1);
+        $timeInMilliseconds = $date->valueOf();
+
         $duckets = UserCurrency::whereNotIn('user_id', $staffUsers)
             ->where('type', 0)
+            ->leftJoin('users', 'users.last_login', '>=', $timeInMilliseconds)
             ->orderByDesc('amount')
             ->take(9)
             ->with(['user:id,username,look'])
